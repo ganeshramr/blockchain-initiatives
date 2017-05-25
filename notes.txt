@@ -1,0 +1,23 @@
+//START A NEW PRIVATE BLOCKCHAIN.ENABLING EXPLORER CROS
+geth --dev --ipcpath ~/Library/Ethereum/geth.ipc -rpc --rpccorsdomain "http://localhost:8000"
+
+//ATTACH AND START A JS CONSOLE TO  GETH
+get --dev attach
+
+miner.start()
+
+miner.stop()
+
+
+---Contract calling from JS
+
+
+// creation of contract object
+var MyContract = web3.eth.contract(abi);
+
+// initiate contract for an address
+var myContractInstance = MyContract.at('0xc4abd0339eb8d57087278718986382264244252f');
+
+// call constant function
+var result = myContractInstance.myConstantMethod('myParam');
+console.log(result) // '0x25434534534'

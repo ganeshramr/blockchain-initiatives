@@ -43,6 +43,22 @@ contract Me is mortal{
      friends[_friendAdress] = Friendship({active: true,since: now,iowehim: 0});
   }
 
+  function payItAll(address _friendAdress){
+
+    _friendAdress.transfer(friends[_friendAdress].iowehim);
+    friends[_friendAdress].iowehim = 0;
+  }
+
+    function setDebt(uint _money){
+      if(friends[msg.sender].active){
+
+        friends[msg.sender].iowehim = _money;
+
+      }else{
+        throw;
+      }
+    }
+
 
 }
 
@@ -56,5 +72,12 @@ contract Friend is mortal{
        friendName = _name;
        friendProfile = _friendProfile;
   }
+
+  function lend(address _friendAdress, uint _money){
+    Me person = Me (_friendAdress);
+    person.setDebt(_money);
+
+  }
+
 
 }

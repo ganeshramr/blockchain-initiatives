@@ -79,20 +79,18 @@ contract Car is Automobile{
     }
 
     function addPreferredLender(address _lienHolder) ownerOnly {
-        lienDetails[_lienHolder] = LienDetails({active: true,since: now,loanAmount: 0});
+        lienDetails[_lienHolder] = LienDetails({active: false,since: now,loanAmount: 0});
 
     }
 
     function setDebt(uint _loan, uint _monthlyDue){
 
-        if(lienDetails[msg.sender].active){
+            lienDetails[msg.sender].active = true;
             lienDetails[msg.sender].loanAmount = _loan;
             outStandingLoanOnCar =  _loan;
             monthlyDue = _monthlyDue;
             lienHolder = msg.sender;
-        } else {
-          revert();
-        }
+
     }
 
     function reviseTotalDue(uint _money) internal{
@@ -101,6 +99,7 @@ contract Car is Automobile{
           if(outStandingLoanOnCar == 0){
             lienDetails[msg.sender].active = false;
             lienHolder = address(0);
+            outStandingLoanOnCar = 0;
           }
 
     }
@@ -139,11 +138,9 @@ contract LoanProgram {
 
     function lend(uint _loanAmount,address _borrowerId,address _borrowerAssetId, uint _loanRepaymentPeriod) bankOnly {
 
-      _borrowerId.transfer(_loanAmount);
-      uint _loanAmountinEther = _loanAmount / 1000000000000000000;
-      loanAmountInEther = _loanAmountinEther;
+      _borrowerId.transfer(_loanAmount * 1000000000000000000);
       Car car = Car (_borrowerAssetId);
-      car.setDebt(loanAmountInEther,loanAmountInEther / _loanRepaymentPeriod);
+      car.setDebt(_loanAmount,_loanAmount / _loanRepaymentPeriod);
     }
 
 

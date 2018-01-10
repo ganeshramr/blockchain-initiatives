@@ -118,9 +118,9 @@ contract Car is Automobile{
 contract LoanProgram {
 
     string public nameOfLoan;
-    address private owner;
+    address public owner;
     event FundsTransfered(address from, address to, uint quantity);
-    uint public loanAmountInEther;
+    uint private loanAmountInWei;
 
     function LoanProgram(string _name)  payable{
       nameOfLoan = _name;
@@ -141,10 +141,10 @@ contract LoanProgram {
       }
 
     function lend(uint _loanAmount,address _borrowerId,address _borrowerAssetId, uint _loanRepaymentPeriod) bankOnly {
-      loanAmountInEther = _loanAmount / 1000000000000000000;
-      _borrowerId.transfer(_loanAmount);
+      loanAmountInWei = _loanAmount * 1000000000000000000;
+      _borrowerId.transfer(loanAmountInWei);
       Car car = Car (_borrowerAssetId);
-      car.setDebt(loanAmountInEther,loanAmountInEther / _loanRepaymentPeriod);
+      car.setDebt(_loanAmount, _loanAmount / _loanRepaymentPeriod);
     }
 
 

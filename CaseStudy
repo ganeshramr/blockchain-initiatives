@@ -1,0 +1,46 @@
+What will you see Today ?
+
+Asset Management Using Blockchain
+---------------------------------
+Smart Titles :
+  How Blockchain Can be used
+    * To Tokenize a Real world asset in this case a Car
+    * To Transfer of Ownerships
+    * To Record History of Services , Accidents ..
+
+Consumer Services
+-----------------
+Blockchain Market Place:
+    * How Blockchain Can be used by Manufacturers to Reach out to consumers without the middlemen
+     - the Dealers
+
+Financial Services
+------------------
+
+Smart Loan Contracts:
+  * How Blockchain Can be used by Banks to Establish and Run Auto Loan Programs (or Organizations)
+  * How Blockchain Can be used by Consumers to gat the loan amount , buy and make monthly payments
+
+
+The Demo Flow
+  * The bank creates a Auto Loan Program
+  * Manufacturer makes a Car available in the market
+  * Consumer approaches the Bank and the Bank Lends to buy the Car through the Loan Program
+  * Consumer buys the car, the Smart title will have the Lien holder set as the Loan Program
+  * Consumer pays and closes the loan
+  * The smart title sets the sole ownership to Consumer
+
+All Transactions are in Ethers
+(Can be in dollars but Ether checks and balances comes out of the box in Ethereum )
+1 Ether = $290 TODAY
+
+The Demo will run off my Private Blockchain
+
+
+
+
+Loan Program - 0xACfB3355b31302376C6E45640E6D5C88DA80ccAb
+
+Car -
+
+Buyer -

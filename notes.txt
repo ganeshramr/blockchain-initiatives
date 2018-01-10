@@ -26,3 +26,7 @@ ABI Program :
 http://ethdocs.org/en/latest/contracts-and-transactions/accessing-contracts-and-transactions.html
 
 https://ethereum.github.io/browser-solidity/#version=soljson-v0.4.11+commit.68ef5810.js
+
+Input Data Decoder:
+
+https://lab.miguelmota.com/ethereum-input-data-decoder/example/

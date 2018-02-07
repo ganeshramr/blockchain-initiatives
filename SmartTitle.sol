@@ -38,7 +38,7 @@ contract Car is Automobile{
     }
 
 
-    function buyCar() payable {
+    function buyCar() public payable {
       if( (msg.value / 1000000000000000000) >= price){
         owner.transfer(msg.value);
         owner = msg.sender;
@@ -78,12 +78,12 @@ contract Car is Automobile{
       uint256 loanAmount; //Ether or $
     }
 
-    function addPreferredLender(address _lienHolder) ownerOnly {
+    function addPreferredLender(address _lienHolder) public ownerOnly {
         lienDetails[_lienHolder] = LienDetails({active: true,since: now,loanAmount: 0});
 
     }
 
-    function setDebt(uint _loan, uint _monthlyDue){
+    function setDebt(uint _loan, uint _monthlyDue) public {
 
           if(lienDetails[msg.sender].active = true){
             lienDetails[msg.sender].loanAmount = _loan;
@@ -108,7 +108,7 @@ contract Car is Automobile{
 
     }
 
-    function payMonthlyDue() payable {
+    function payMonthlyDue() payable public {
       reviseTotalDue(msg.value / 1000000000000000000);
       lienHolder.transfer(msg.value) ;
     }
@@ -122,13 +122,13 @@ contract LoanProgram {
     event FundsTransfered(address from, address to, uint quantity);
     uint private loanAmountInWei;
 
-    function LoanProgram(string _name)  payable{
+    function LoanProgram(string _name)  payable public {
       nameOfLoan = _name;
       owner = msg.sender;
       FundsTransfered(msg.sender, this, msg.value);
     }
 
-    function () payable {
+    function () payable private {
       FundsTransfered(msg.sender, this, msg.value);
     }
 
@@ -140,7 +140,7 @@ contract LoanProgram {
         }
       }
 
-    function lend(uint _loanAmount,address _borrowerId,address _borrowerAssetId, uint _loanRepaymentPeriod) bankOnly {
+    function lend(uint _loanAmount,address _borrowerId,address _borrowerAssetId, uint _loanRepaymentPeriod) bankOnly public {
       loanAmountInWei = _loanAmount * 1000000000000000000;
       _borrowerId.transfer(loanAmountInWei);
       Car car = Car (_borrowerAssetId);

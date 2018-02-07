@@ -2,7 +2,7 @@
 geth --dev --ipcpath ~/Library/Ethereum/geth.ipc -rpc --rpccorsdomain "http://localhost:8000"
 
 //ATTACH AND START A JS CONSOLE TO  GETH
-get --dev attach
+geth --dev attach
 
 miner.start()
 
@@ -30,3 +30,46 @@ https://ethereum.github.io/browser-solidity/#version=soljson-v0.4.11+commit.68ef
 Input Data Decoder:
 
 https://lab.miguelmota.com/ethereum-input-data-decoder/example/
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+https://gist.github.com/fishbullet/04fcc4f7af90ee9fa6f9de0b0aa325ab
+
+docker network create ETH
+docker run --rm -it -p 8546:8546 --net=ETH <image>
+docker network inspect ETH
+
+
+geth --datadir=./node1 init genesis.json
+geth --identity="NODE_ONE" --networkid="500" --datadir=./node1 --rpc --rpcaddr 0.0.0.0
+geth --identity="NODE_TWO" --networkid="500" --datadir=./node1 --rpc --rpcaddr 0.0.0.0 --rpcport=8546
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+https://gist.github.com/fishbullet/04fcc4f7af90ee9fa6f9de0b0aa325ab
+
+geth --datadir ./node1 --networkid 001 --ipcpath ~/Library/Ethereum/geth.ipc console 2>> node1.log
+
+geth --datadir ./node2 --networkid 001 --port 30304 console 2>> node2.log
+
+geth --datadir=./node1 account new
+geth --datadir=./node1 init genesis.json
+geth --datadir ./node1 --networkid 98765
+personal.unlockAccount(eth.accounts[0], "sonjava123", 150000)
+geth attach ipc:./geth.ipc
+web3.fromWei(eth.getBalance(eth.coinbase), "ether")
+eth.getBlock('pending', true)
+
+geth --datadir ./node1 --networkid 0102 --bootnodes enode://afe8e9b6ef1212cd2ef30c93114d1511ef8240bf9d0930a5abde116a7d214e41f16381dd6afa6e21741b7a1fb9c9fad907ac2f37fc7ab44e920bc6b7f86f4ad4@172.17.0.2:30303
+
+geth --datadir ./node1 --identity="NODE_TWO" --networkid="1020" --verbosity=1 --mine --minerthreads=1 --rpc --rpcport=8546
+https://www.myetherwallet.com/helpers.html
+
+geth --datadir ./node1--networkid 98765 --port 30304 --bootnodes "enode://afe8e9b6ef1212cd2ef30c93114d1511ef8240bf9d0930a5abde116a7d214e41f16381dd6afa6e21741b7a1fb9c9fad907ac2f37fc7ab44e920bc6b7f86f4ad4@172.17.0.2:30303"
+
+
+admin.addPeer("enode://afe8e9b6ef1212cd2ef30c93114d1511ef8240bf9d0930a5abde116a7d214e41f16381dd6afa6e21741b7a1fb9c9fad907ac2f37fc7ab44e920bc6b7f86f4ad4@172.17.0.2:30303")

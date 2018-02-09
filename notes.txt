@@ -13,6 +13,7 @@ miner.stop()
 
 
 // creation of contract object
+var contractInfo = JSON.parse()
 var MyContract = web3.eth.contract(abi);
 
 // initiate contract for an address
@@ -43,7 +44,15 @@ geth --datadir=./node1 init genesis.json
 geth --identity="NODE_ONE" --networkid="500" --datadir=./node1 --rpc --rpcaddr 0.0.0.0
 geth --identity="NODE_TWO" --networkid="500" --datadir=./node1 --rpc --rpcaddr 0.0.0.0 --rpcport=8546
 
+#!/bin/bash
+# Delete all containers
+docker rm $(docker ps -a -q)
+# Delete all images
+docker rmi $(docker images -q)
 
+curl http://localhost:8545 -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":67}'
+
+docker run -it -p 127.0.0.1:8545:8545 -p 30303:30303 5e6230054273 geth --networkid="500" --datadir=./node -rpcaddr 0.0.0.0 --rpc --rpccorsdomain "http://ofsblockchain.herokuapp.com" --unlock "0" --password "password" console 
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -73,3 +82,8 @@ geth --datadir ./node1--networkid 98765 --port 30304 --bootnodes "enode://afe8e9
 
 
 admin.addPeer("enode://afe8e9b6ef1212cd2ef30c93114d1511ef8240bf9d0930a5abde116a7d214e41f16381dd6afa6e21741b7a1fb9c9fad907ac2f37fc7ab44e920bc6b7f86f4ad4@172.17.0.2:30303")
+
+--rpccorsdomain "https://ofiamdb.herokuapp.com"
+
+
+geth --networkid="500" --datadir=./node --rpc  --rpccorsdomain "https://ofiamdb.herokuapp.com" --unlock "0" --password "password" console 2>> eth.log

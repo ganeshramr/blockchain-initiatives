@@ -14,7 +14,7 @@ miner.stop()
 
 // creation of contract object
 var contractInfo = JSON.parse()
-var MyContract = web3.eth.contract(abi);
+var MyContract = web3.eth.contract(contractInfo);
 
 // initiate contract for an address
 var myContractInstance = MyContract.at('0xc4abd0339eb8d57087278718986382264244252f');
@@ -22,6 +22,8 @@ var myContractInstance = MyContract.at('0xc4abd0339eb8d5708727871898638226424425
 // call constant function
 var result = myContractInstance.myConstantMethod('myParam');
 console.log(result) // '0x25434534534'
+
+myContractInstance.addAccident.sendTransaction("1",{from: web3.eth.coinbase});
 
 ABI Program :
 http://ethdocs.org/en/latest/contracts-and-transactions/accessing-contracts-and-transactions.html
@@ -48,11 +50,11 @@ geth --identity="NODE_TWO" --networkid="500" --datadir=./node1 --rpc --rpcaddr 0
 # Delete all containers
 docker rm $(docker ps -a -q)
 # Delete all images
-docker rmi $(docker images -q)
+docker  rmi -f $(docker images -q)
 
 curl http://localhost:8545 -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":67}'
 
-docker run -it -p 127.0.0.1:8545:8545 -p 30303:30303 5e6230054273 geth --networkid="500" --datadir=./node -rpcaddr 0.0.0.0 --rpc --rpccorsdomain "http://ofsblockchain.herokuapp.com" --unlock "0" --password "password" console 
+docker run -it -p 127.0.0.1:8545:8545 -p 30303:30303 5e6230054273 geth --networkid="500" --datadir=./node -rpcaddr 0.0.0.0 --rpc --rpccorsdomain "http://ofsblockchain.herokuapp.com" --unlock "0" --password "password" console
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 

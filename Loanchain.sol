@@ -66,13 +66,13 @@ contract Applicant{
        return false;
      }
 
-     function ackApplication(string name,address lenderAddress) public{
-       applicationDetails[msg.sender] = Application(name,lenderAddress,true,now);
+     function ackApplication(string _name,address _lenderAddress) public{
+       applicationDetails[msg.sender] = Application(_name,_lenderAddress,true,now);
        ApplicationAcknowledged(msg.sender);
        myApplications.push(msg.sender);
      }
 
- //add modified lenderCallOnly to restrict access ONLY to lender
+     //add modified lenderCallOnly to restrict access ONLY to lender
      function getApplicantDetails() public constant  returns(string,string,string,int,int,address){
        return (applicantName,applicantSex,applicantDOB,ssn,applicantIncome,signedBy);
      }
@@ -92,9 +92,9 @@ contract LoanProgram {
     name = _name;
   }
 
-  function apply(address applicant,string loanType, int loanAmount,int loanPeriodInYears) public {
+  function apply(address _applicant,string _loanType, int _loanAmount,int _loanPeriodInYears) public {
 
-    address newContract = new Loan(name,applicant,loanType,loanAmount,loanPeriodInYears);
+    address newContract = new Loan(name,_applicant,_loanType,_loanAmount,_loanPeriodInYears);
     ApplicationCreated(newContract);
   }
 }
@@ -109,8 +109,8 @@ contract Loan {
    bool public goodCredit;
    bool public approved;
    event UpdatingCreditStatusFor(int ssn);
-   event DisclosuresUpdated(int _estimatedIntrestRate,int _estimatedEMI);
-   event LoanAmountTxfed(uint _amount);
+   event DisclosuresUpdated(int estimatedIntrestRate,int estimatedEMI);
+   event LoanAmountTxfed(uint amount);
    int ssn;
    int applicantIncome;
    address signedBy;

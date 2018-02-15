@@ -72,11 +72,13 @@ contract Applicant{
        myApplications.push(msg.sender);
      }
 
-     function getApplicantDetails() public constant lenderCallOnly returns(string,string,string,int,int,address){
+ //add modified lenderCallOnly to restrict access ONLY to lender
+     function getApplicantDetails() public constant  returns(string,string,string,int,int,address){
        return (applicantName,applicantSex,applicantDOB,ssn,applicantIncome,signedBy);
      }
 
-     function getApplicantAddress() public  constant lenderCallOnly returns(string,string,string,string,string,string){
+     //add modified lenderCallOnly to restrict access ONLY to lender
+     function getApplicantAddress() public  constant  returns(string,string,string,string,string,string){
        return(physicalAddress.street1,physicalAddress.street2,physicalAddress.city,physicalAddress.zip,physicalAddress.state,physicalAddress.country);
      }
 }

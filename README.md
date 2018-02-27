@@ -36,11 +36,16 @@ docker network inspect ETH
 docker rm $(docker ps -a -q)
 ### Delete all images
 docker  rmi -f $(docker images -q)
-```
+
+
 
 ## Evolution of commands
 ```
-curl http://localhost:8545 -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":67}'
+curl http://localhost:8080 -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":67}'
+
+curl http://34.208.132.140 -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":67}'
+
+curl http://54.204.30.225 -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"net_listening","params":[],"id":67}'
 
 https://guarded-hamlet-63165.herokuapp.com/
 

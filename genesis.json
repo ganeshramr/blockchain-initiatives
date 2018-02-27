@@ -7,8 +7,7 @@
     },
     "difficulty": "1",
     "gasLimit": "8000000",
-    "coinbase": "0x3333333333333333333333333333333333333333",
-    "alloc": {
-
+    "coinbase": "0x79fb532c7949ee7157c6817beaccf3230cea2865",
+    "alloc": {"79fb532c7949ee7157c6817beaccf3230cea2865":               {"balance":"200000000000000000000000"}
     }
 }

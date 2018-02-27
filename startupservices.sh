@@ -1,13 +1,15 @@
 #!/bin/bash
 # Start the geth
-geth --networkid="007" --datadir=./node --rpc --rpccorsdomain "*" --rpcaddr 0.0.0.0 --unlock "0" --password "password" --mine 2>> eth.log &
+echo "Attempting to start Geth"
+geth --networkid="007" --datadir=./node --rpc --rpccorsdomain "*" --rpcaddr 0.0.0.0 --unlock "0" --password /home/eth_runner/myeth/password --mine 2>> eth.log &
+echo "Started Geth waiting for the endpoints to open"
 sleep 30;
-
+echo "Started Proxy"
 #REPLACE ENV variable in nginx.conf
 echo "PORT is" $PORT
 sed -i "s/HEROKU_PORT/$PORT/g" /etc/nginx/nginx.conf
 nginx &
-
+echo "Private Blockchain Instance Started. Rock On /|>"
 while sleep 60; do
   ps aux |grep geth |grep -q -v grep
   PROCESS_1_STATUS=$?
@@ -19,4 +21,5 @@ while sleep 60; do
     echo "One of the processes has already exited."
     exit -1
   fi
+  echo "Status Check : Blockchain up and running."
 done

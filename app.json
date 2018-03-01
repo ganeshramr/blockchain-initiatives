@@ -1,0 +1,13 @@
+{
+  "name": "Blockchain",
+  "description": "This is the Blockchain.",
+  "keywords": [
+    "blockchain",
+    "geth",
+    "ethereum"
+  ],
+  "website": "http://www.objectfrontier.com/",
+  "repository": "https://github.com/ganeshramr/blockchain-initiatives",
+  "success_url": "/",
+  "stack": "container"
+}

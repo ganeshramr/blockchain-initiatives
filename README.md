@@ -41,7 +41,7 @@ docker  rmi -f $(docker images -q)
 
 ## Evolution of commands
 ```
-curl http://private-blockchain.herokuapp.com/ -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":67}'
+curl http://blockchain-admin-testbed.herokuapp.com/ -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":67}'
 
 curl http://34.208.132.140 -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"web3_clientVersion","params":[],"id":67}'
 

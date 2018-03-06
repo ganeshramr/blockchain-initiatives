@@ -41,18 +41,18 @@ COPY startupservices.sh /home/eth_runner/myeth
 RUN mkdir -p /home/eth_runner/myeth/admin
 COPY admin-app /home/eth_runner/myeth/admin
 
-#RUN rm /bin/sh && ln -s /bin/bash /bin/sh
-#RUN apt-get update && apt-get -y autoclean
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+RUN apt-get update && apt-get -y autoclean && apt-get  install -y git
 ENV NVM_DIR /usr/local/nvm
 ENV NODE_VERSION 8.9.1
-#RUN curl --silent -o- #https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
-#RUN source $NVM_DIR/nvm.sh \
-#    && nvm install $NODE_VERSION \
-#    && nvm alias default $NODE_VERSION \
-#    && nvm use default
+RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
+RUN source $NVM_DIR/nvm.sh \
+    && nvm install $NODE_VERSION \
+    && nvm alias default $NODE_VERSION \
+    && nvm use default
 ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
 ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
-#RUN node -v
-#RUN npm -v
+RUN node -v
+RUN npm -v
 
 CMD /home/eth_runner/myeth/startupservices.sh

@@ -7,7 +7,7 @@ app.use(express.static(path.join(__dirname, 'build')))
 app.locals.blockchainurl = process.env.BLOCKCHAIN_SERVICE_URL;
 
 app.get('/urltouse', function(req, res) {
-    res.send(req.app.locals.blockchainurl);
+    res.send(process.env.BLOCKCHAIN_SERVICE_URL);
 });
 app.listen(PORT)
-console.log("BLOCKCHAIN_SERVICE_URL is "+process.env.BLOCKCHAIN_SERVICE_URL)
+console.log("BLOCKCHAIN_SERVICE_URL IS "+process.env.BLOCKCHAIN_SERVICE_URL)

@@ -9,7 +9,6 @@ RUN adduser --disabled-login --gecos "" eth_runner
 RUN mkdir -p /home/eth_runner/myeth/node
 
 RUN apt-get update && apt-get install -y curl less bash
-ADD ./.bash_profile ~/
 
 COPY genesis.json /home/eth_runner/myeth
 COPY password /home/eth_runner/myeth
